@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="NIMBUS helps people understand current weather across Bandung districts."
+    >
+    <title>NIMBUS — Bandung Weather Companion</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="page-shell header-inner">
+        <div class="brand-block">
+          <p class="eyebrow">Bandung weather companion</p>
+          <h1>NIMBUS</h1>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#bandung-map">Bandung Map</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#weather-details">Weather Details</a></li>
+          </ul>
+        </nav>
+
+        <button
+          id="refresh-weather"
+          class="button button-secondary"
+          type="button"
+          aria-describedby="app-status"
+        >
+          Refresh weather
+        </button>
+      </div>
+
+      <div class="page-shell">
+        <p id="app-status" class="app-status" role="status" aria-live="polite">
+          Preparing current weather…
+        </p>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div id="global-state-root" class="global-state" hidden></div>
+
+      <section id="overview" class="weather-hero" aria-labelledby="bandung-overview-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Bandung overview</p>
+          <h2 id="bandung-overview-heading">Bandung right now</h2>
+          <p>Current city conditions provide context before you explore individual districts.</p>
+        </div>
+        <div id="hero-root" class="hero-root">
+          <p>Weather information is loading.</p>
+        </div>
+      </section>
+
+      <section id="bandung-map" class="district-explorer" aria-labelledby="district-explorer-heading">
+        <div class="section-heading section-heading-wide">
+          <div>
+            <p class="eyebrow">District explorer</p>
+            <h2 id="district-explorer-heading">Explore Bandung by district</h2>
+          </div>
+          <p>
+            Each district uses a representative weather-query point. Conditions can vary
+            within the same administrative area.
+          </p>
+        </div>
+
+        <div class="weather-stage">
+          <div class="map-panel">
+            <div class="map-shell" aria-labelledby="map-shell-title">
+              <div id="bandung-map-root" class="map-viewport">
+                <p class="map-fallback">Loading the Bandung district map…</p>
+              </div>
+
+              <div class="readiness-legend" aria-labelledby="readiness-legend-title">
+                <h3 id="readiness-legend-title">Outdoor Readiness</h3>
+                <ul>
+                  <li><span data-level="excellent" aria-hidden="true"></span>Excellent</li>
+                  <li><span data-level="good" aria-hidden="true"></span>Good</li>
+                  <li><span data-level="fair" aria-hidden="true"></span>Fair</li>
+                  <li><span data-level="low" aria-hidden="true"></span>Low</li>
+                  <li><span data-level="poor" aria-hidden="true"></span>Poor</li>
+                  <li><span data-level="unknown" aria-hidden="true"></span>No data</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="district-control">
+              <label for="district-selector">Choose a Bandung district</label>
+              <select id="district-selector" name="district">
+                <option value="">Select a district</option>
+              </select>
+              <p id="district-availability" class="supporting-copy">
+                District weather is loading automatically.
+              </p>
+            </div>
+          </div>
+
+          <aside
+            id="district-panel-root"
+            class="district-context"
+            aria-label="Selected district weather"
+          >
+            <p>Select a district to view local weather details.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="activities" class="activity-section" aria-labelledby="activity-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Activity advisor</p>
+          <h2 id="activity-heading">Things to do right now</h2>
+        </div>
+        <div id="activity-root">
+          <p>Select a district to view activity recommendations.</p>
+        </div>
+      </section>
+
+      <div class="supporting-layout">
+        <section class="preparation-section" aria-labelledby="preparation-heading">
+          <div class="section-heading">
+            <p class="eyebrow">Practical preparation</p>
+            <h2 id="preparation-heading">Before you go</h2>
+          </div>
+          <div id="preparation-root">
+            <p>Select a district to see what may be useful.</p>
+          </div>
+        </section>
+
+        <section id="weather-details" class="details-section" aria-labelledby="details-heading">
+          <div class="section-heading">
+            <p class="eyebrow">Current measurements</p>
+            <h2 id="details-heading">Weather details</h2>
+          </div>
+
+          <div class="weather-instruments">
+            <section
+              class="weather-instrument-section"
+              aria-labelledby="wind-compass-heading"
+            >
+              <p class="eyebrow">Air movement</p>
+              <h3 id="wind-compass-heading">Wind compass</h3>
+              <div id="wind-compass-root">
+                <p>Select a district to view current wind.</p>
+              </div>
+            </section>
+
+            <section
+              class="weather-instrument-section"
+              aria-labelledby="sun-journey-heading"
+            >
+              <p class="eyebrow">Local daylight</p>
+              <h3 id="sun-journey-heading">Sun journey</h3>
+              <div id="sun-journey-root">
+                <p>Select a district to view current daylight context.</p>
+              </div>
+            </section>
+          </div>
+
+          <div id="weather-details-root">
+            <p>Select a district to inspect current measurements.</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="editorial-section" aria-labelledby="weather-story-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Weather personality</p>
+          <h2 id="weather-story-heading">The district weather story</h2>
+        </div>
+        <div id="personality-story-root">
+          <p>Select a district to read its current weather story.</p>
+        </div>
+      </section>
+
+      <noscript>
+        <div class="message-state message-state-error">
+          <h2>JavaScript is required for current weather</h2>
+          <p>NIMBUS needs JavaScript to retrieve and display Bandung weather data.</p>
+        </div>
+      </noscript>
+    </main>
+
+    <footer class="page-shell site-footer">
+      <p>
+        District conditions represent selected query points and do not imply uniform
+        weather throughout each kecamatan.
+      </p>
+    </footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

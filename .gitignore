@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+.env.*
+config.local.js
+js/config/apiKey.local.js
